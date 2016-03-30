@@ -1,7 +1,7 @@
-
 // 张树垚 2015-12-02 15:08:58 创建
 // gulp工具 -- 桌面提示
 
+'use strict';
 
 // {
 // 	err: function(message) {},
@@ -10,12 +10,11 @@
 // 	info: function(message) {},
 // }
 
-var notify = null;
 var images = {
 	avatar: ''
 };
 var maker = function(message, image) {
-	notify = notify || require('gulp-notify');
+	let notify = require('gulp-notify');
 	return notify({
 		title: '果仁宝 by zsy', // 标题
 		// subtitle: 'subtitle', // 子标题(可省)
@@ -42,7 +41,3 @@ var success = maker.success = function() {};
 
 
 module.exports = maker;
-
-
-
-

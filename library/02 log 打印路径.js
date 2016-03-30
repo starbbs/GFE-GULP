@@ -1,10 +1,7 @@
-
 // 张树垚 2015-12-02 16:09:02 创建
 // gulp工具 -- 打印路径
 
-
-var rename = require('gulp-rename');
-
+'use strict';
 
 /**
  * [log 打印路径]
@@ -13,11 +10,10 @@ var rename = require('gulp-rename');
  * @return   {[gulp-stream]}
  * @用法:
  * .pipe(tools.log())
-*/
+ */
 module.exports = function() {
+	let rename = require('gulp-rename');
 	return rename(function(path) {
 		console.log(path);
 	});
 };
-
-

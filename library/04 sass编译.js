@@ -1,18 +1,10 @@
-
 // 张树垚 2015-12-03 15:12:10 创建
 // gulp sass编译
 // 包括:
 // 1. 自动补全autoprefixer
 // 2. sourcemap
 
-
-var gulp = require('gulp');
-var sass = require('gulp-ruby-sass');
-var autoprefixer = require('gulp-autoprefixer');
-var sourcemaps = require('gulp-sourcemaps');
-
-var removeDirname = require('./03 removeDirname 去掉文件夹路径.js');
-
+'use strict';
 
 /**
  * [sass sass编译]
@@ -27,6 +19,11 @@ var removeDirname = require('./03 removeDirname 去掉文件夹路径.js');
  * });
  */
 module.exports = function(input, output) {
+	let gulp = require('gulp');
+	let sass = require('gulp-ruby-sass');
+	let autoprefixer = require('gulp-autoprefixer');
+	let sourcemaps = require('gulp-sourcemaps');
+	let removeDirname = require('./03 removeDirname 去掉文件夹路径.js');
 	return sass(input, {
 			// style: 'nested',
 			// style: 'expanded',
@@ -41,13 +38,3 @@ module.exports = function(input, output) {
 		.pipe(sourcemaps.write('./'))
 		.pipe(gulp.dest(output))
 };
-
-
-
-
-
-
-
-
-
-

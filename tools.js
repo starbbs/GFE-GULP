@@ -3,7 +3,7 @@
 // 工具
 
 
-var PATH_SRC = './src';
+var PATH_SRC = './library';
 
 
 module.exports = {
@@ -19,6 +19,7 @@ module.exports = {
 	html: require(PATH_SRC + '/10 html页面处理.js'),
 	output: require(PATH_SRC + '/11 output 多路径输出.js'),
 	template: require(PATH_SRC + '/12 template 模版.js'),
+	combine: require(PATH_SRC + '/13 combine 合并.js'),
 };
 
 

@@ -1,13 +1,8 @@
-
 // 张树垚 2015-12-07 15:50:12 创建
 // gulp工具 -- 页面处理
 // :: 未知原因, 无法在file-move中实现压缩, 所以单独拿出
 
-
-var gulp = require('gulp');
-var minifyHtml = require('gulp-minify-html');
-var replace = require('gulp-replace');
-
+'use strict';
 
 /**
  * [html 压缩, 删除]
@@ -21,8 +16,11 @@ var replace = require('gulp-replace');
  * @return   {[gulp-stream]}
  */
 module.exports = function(input, output, options) {
+	let gulp = require('gulp');
+	let minifyHtml = require('gulp-minify-html');
+	let replace = require('gulp-replace');
 	options = options || {};
-	var stream = gulp.src(input)
+	let stream = gulp.src(input)
 		.pipe(replace(options.remove, ''))
 		.pipe(minifyHtml({
 			empty: true, // 保留空属性

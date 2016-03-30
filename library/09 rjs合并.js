@@ -1,15 +1,7 @@
-
 // 张树垚 2015-12-07 11:19:40 创建
 // gulp工具 -- 加载器合并
 
-
-var gulp = require('gulp');
-var rjs = require('gulp-requirejs');
-var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
-
-var filePath = require('./05 file-path 路径处理.js');
-
+'use strict';
 
 /**
  * [rjs 基于AMD加载器requirejs的打包工具]
@@ -25,28 +17,33 @@ var filePath = require('./05 file-path 路径处理.js');
  * @return   {[gulp-stream]}
  */
 module.exports = function(input, output, options) {
+	let gulp = require('gulp');
+	let rjs = require('gulp-requirejs');
+	let uglify = require('gulp-uglify');
+	let rename = require('gulp-rename');
+	let filePath = require('./05 file-path 路径处理.js');
 	input = filePath(input);
-	var build = function(baseUrl, name) { // 单个处理
+	let build = function(baseUrl, name) { // 单个处理
 		return rjs({
-			baseUrl: baseUrl,
-			// mainConfigFile: '../config.js',
-			name: name,
-			out: name + '.js',
-			paths: options.rjsPaths,
-			shim: {
-				jquery: {
-					exports: "jQuery"
+				baseUrl: baseUrl,
+				// mainConfigFile: '../config.js',
+				name: name,
+				out: name + '.js',
+				paths: options.rjsPaths,
+				shim: {
+					jquery: {
+						exports: "jQuery"
+					},
+					$: {
+						exports: "jQuery"
+					}
 				},
-				$: {
-					exports: "jQuery"
-				}
-			},
-			include: [],
-			module: [],
-			// optimize: 'uglify'
-		})
-		.pipe(options.uglify ? uglify() : rename(function(path) {}))
-		.pipe(gulp.dest(output));
+				include: [],
+				module: [],
+				// optimize: 'uglify'
+			})
+			.pipe(options.uglify ? uglify() : rename(function(path) {}))
+			.pipe(gulp.dest(output));
 	};
 	if (input.extname === 'html') { // 提取对应js
 		gulp.src(input.origin, function(somethingNULL, filePaths) {
@@ -75,9 +72,3 @@ module.exports = function(input, output, options) {
 		console.log('请输入后缀为html或js的文件路径');
 	}
 };
-
-
-function build(input, output, options) {
-}
-
-

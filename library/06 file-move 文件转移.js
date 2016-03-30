@@ -1,17 +1,7 @@
-﻿
-// 张树垚 2015-12-04 09:49:51 创建
+﻿// 张树垚 2015-12-04 09:49:51 创建
 // gulp工具 -- 文件转移
 
-
-var gulp = require('gulp');
-var rename = require('gulp-rename');
-var minifyHtml = require('gulp-minify-html');
-var imagemin = require('gulp-imagemin');
-var uglify = require('gulp-uglify');
-
-
-var filePath = require('./05 file-path 路径处理.js');
-
+'use strict';
 
 /**
  * [fileMove 文件转移]
@@ -36,35 +26,53 @@ var filePath = require('./05 file-path 路径处理.js');
  * });
  */
 module.exports = function(input, output, options) {
+	let gulp = require('gulp');
+	let rename = require('gulp-rename');
+	let minifyHtml = require('gulp-minify-html');
+	let imagemin = require('gulp-imagemin');
+	let uglify = require('gulp-uglify');
+	let filePath = require('./05 file-path 路径处理.js');
 	options = options || {};
-	if (typeof options.removeDirname === 'undefined') { options.removeDirname = true; }
+	if (typeof options.removeDirname === 'undefined') {
+		options.removeDirname = true;
+	}
 	return gulp.src(input, function(somethingNULL, filePaths) {
-		if (!filePaths.length) { return; }
+		if (!filePaths.length) {
+			return;
+		}
 		// 选择
-		var baseFile = filePath(filePaths[0]);
-		var baseUrl = baseFile.type === 'dir' ? baseFile.origin : baseFile.path; // 根路径
-		var files = filePaths.filter(function(path) { // 文件筛选
+		let baseFile = filePath(filePaths[0]);
+		let baseUrl = baseFile.type === 'dir' ? baseFile.origin : baseFile.path; // 根路径
+		let files = filePaths.filter(function(path) { // 文件筛选
 			path = filePath(path);
 			// 指定文件类型
-			if (options.type === path.type) { return options.fileReg ? options.fileReg.test(path.filename) : true; }
+			if (options.type === path.type) {
+				return options.fileReg ? options.fileReg.test(path.filename) : true;
+			}
 			// 未指定或全部
-			if (options.type === 'all' || typeof options.type === 'undefined') { return true; }
+			if (options.type === 'all' || typeof options.type === 'undefined') {
+				return true;
+			}
 			// 所有文件
-			if (options.type === 'file') { return path.type !== 'dir'; }
+			if (options.type === 'file') {
+				return path.type !== 'dir';
+			}
 		});
 		// 处理
-		var stream = gulp.src(files, { base: options.baseUrl || baseUrl }).pipe(rename(function(path) {
+		let stream = gulp.src(files, {
+			base: options.baseUrl || baseUrl
+		}).pipe(rename(function(path) {
 			options.rename && options.rename(path);
 			options.removeDirname && (path.dirname = '');
 		}));
 		options.minifyHtml && stream.pipe(minifyHtml({ // html压缩无效果, 原因未知
-			empty: false,		// 保留空属性
-			cdata: false,		// 保留scripts标签的CDATA
-			comments: false,	// 保留注释
-			conditionals: true,	// 保留条件语句
-			spare: true,		// 保留多余属性
-			quotes: true,		// 保留所有引用
-			loose: true			// 保留1个空白符
+			empty: false, // 保留空属性
+			cdata: false, // 保留scripts标签的CDATA
+			comments: false, // 保留注释
+			conditionals: true, // 保留条件语句
+			spare: true, // 保留多余属性
+			quotes: true, // 保留所有引用
+			loose: true // 保留1个空白符
 		}));
 		options.imagemin && stream.pipe(imagemin());
 		options.uglify && stream.pipe(uglify());
@@ -73,6 +81,3 @@ module.exports = function(input, output, options) {
 		options.server && stream.pipe(gulp.dest(options.server));
 	});
 };
-
-
-

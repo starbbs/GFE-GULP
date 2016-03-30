@@ -1,12 +1,7 @@
-
 // 张树垚 2015-12-12 13:15:14 创建
 // gulp工具 -- 模版
 
-
-var gulp = require('gulp');
-var rename = require('gulp-rename');
-var replace = require('gulp-replace');
-
+'use strict';
 
 /**
  * [template 模版]
@@ -24,7 +19,12 @@ var replace = require('gulp-replace');
  * });
  */
 module.exports = function(input, output, options) {
-	if (!options || !options.name) { return; } // 加限制, 该方法慎用, 以防覆盖已写好的文件
+	let gulp = require('gulp');
+	let rename = require('gulp-rename');
+	let replace = require('gulp-replace');
+	if (!options || !options.name) {
+		return;
+	} // 加限制, 该方法慎用, 以防覆盖已写好的文件
 	return gulp.src(input)
 		.pipe(replace(/\{\{([^\}]+)\}\}/g, function(s, s1) {
 			return s1 in options ? options[s1] : s;
@@ -34,8 +34,3 @@ module.exports = function(input, output, options) {
 		}))
 		.pipe(gulp.dest(options.withoutName ? output : output + '/' + options.name))
 };
-
-
-
-
-

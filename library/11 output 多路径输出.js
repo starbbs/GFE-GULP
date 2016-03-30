@@ -1,10 +1,7 @@
-
 // 张树垚 2015-12-10 10:54:42 创建
 // gulp工具 -- 多路径输出
 
-
-var gulp = require('gulp');
-
+'use strict';
 
 /**
  * [output 多路径输出]
@@ -15,8 +12,8 @@ var gulp = require('gulp');
  * @return   {[gulp-stream]}
  */
 module.exports = function(stream, output) {
+	let gulp = require('gulp');
 	return !Array.isArray(output) ? stream.pipe(gulp.dest(output)) : output.reduce(function(stream, path) {
 		return stream.pipe(gulp.dest(path));
 	}, stream);
 };
-

@@ -1,11 +1,7 @@
 // 张树垚 2015-12-06 13:37:06 创建
 // gulp工具 -- sprite生成, css压缩, sprite图压缩
 
-
-var gulp = require('gulp');
-
-var filePath = require('./05 file-path 路径处理.js');
-
+'use strict';
 
 /**
  * [cssSprite sprite生成, css压缩, sprite图压缩]
@@ -22,16 +18,18 @@ var filePath = require('./05 file-path 路径处理.js');
  * @return   {[gulp-stream]}
  */
 module.exports = function(input, output, options) {
-	var rename = require('gulp-rename');
-	var sprite = require('gulp-sprite-generator');
-	var minifycss = require("gulp-minify-css");
-	var imagemin = require('gulp-imagemin');
+	let gulp = require('gulp');
+	let filePath = require('./05 file-path 路径处理.js');
+	let rename = require('gulp-rename');
+	let sprite = require('gulp-sprite-generator');
+	let minifycss = require("gulp-minify-css");
+	let imagemin = require('gulp-imagemin');
 	options = options || {};
 	return gulp.src(input, function(somethingNULL, filePaths) {
 		filePaths.forEach(function(path) {
 			path = filePath(path);
 			if (path.type === 'css') {
-				var spriteOutput = gulp.src(path.origin).pipe(sprite({
+				let spriteOutput = gulp.src(path.origin).pipe(sprite({
 					baseUrl: './',
 					spriteSheetName: path.basename + '.png',
 					spriteSheetPath: '../images',

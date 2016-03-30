@@ -1,10 +1,7 @@
-
 // 张树垚 2015-12-03 15:30:24 创建
 // gulp工具 -- 去掉文件夹路径
 
-
-var rename = require('gulp-rename');
-
+'use strict';
 
 /**
  * [removeDirname 去掉文件夹路径]
@@ -15,8 +12,8 @@ var rename = require('gulp-rename');
  * .pipe(removeDirname())
  */
 module.exports = function() {
+	let rename = require('gulp-rename');
 	return rename(function(path) {
 		path.dirname = '';
 	});
 };
-

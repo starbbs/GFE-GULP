@@ -1,11 +1,7 @@
-
 // 张树垚 2015-12-05 12:48:23 创建
 // gulp工具 -- 处理原始路径
 
-
-var path = require('path');
-
-
+'use strict';
 
 /**
  * [filePath 处理原始路径]
@@ -23,23 +19,24 @@ var path = require('path');
  *           {[string]}          json.origin     [原路径./dir2/dir1/file.json]     [原路径./dir2/dir1]
  */
 module.exports = function(url) {
+	let path = require('path');
 	url = path.normalize(url).replace(/\\/g, '/');
-  	if (/\.\w+$/.test(url)) { // 所有文件
-		var filename = url.match(/\/([\*\w\-\.]+)$/)[1]; // 文件名(带后缀)
-		var pathname = url.replace('/' + filename, ''); // 路径名
-		var extname = filename.match(/\.(\w+)$/)[1]; // 后缀名
-		var dirname = pathname.match(/\/([\w\-]+)$/)[1]; // 文件夹名
-		var basename = filename.replace(/\.[^\.]+$/, ''); // 文件名(不带后缀)
-		var result = {
+	if (/\.\w+$/.test(url)) { // 所有文件
+		let filename = url.match(/\/([\*\w\-\.]+)$/)[1]; // 文件名(带后缀)
+		let pathname = url.replace('/' + filename, ''); // 路径名
+		let extname = filename.match(/\.(\w+)$/)[1]; // 后缀名
+		let dirname = pathname.match(/\/([\w\-]+)$/)[1]; // 文件夹名
+		let basename = filename.replace(/\.[^\.]+$/, ''); // 文件名(不带后缀)
+		let result = {
 			type: 'file',
 			filename: filename,
 			basename: basename,
-			extname: extname, 
+			extname: extname,
 			dirname: dirname,
 			path: pathname,
 			origin: url
 		};
-		var types = [{
+		let types = [{
 			name: 'image',
 			exts: ['png', 'gif', 'jpg', 'jpeg', 'svg']
 		}, {
@@ -52,8 +49,8 @@ module.exports = function(url) {
 			name: 'html',
 			exts: ['html', 'htm', 'xhtml', 'xhtm']
 		}];
-		for (var i = 0; i < types.length; i++) {
-			if(new RegExp('\\.(' + types[i].exts.join('|') + ')$', 'i').test(filename)) {
+		for (let i = 0; i < types.length; i++) {
+			if (new RegExp('\\.(' + types[i].exts.join('|') + ')$', 'i').test(filename)) {
 				result.type = (basename === '*' || basename === '**') ? types[i].name + '-all' : types[i].name;
 				break;
 			}
@@ -74,13 +71,9 @@ module.exports = function(url) {
 
 
 function matchDir(url, reg, index) {
-	var match = url.match(reg);
-	if (match && match[index]) { return match[index]; }
+	let match = url.match(reg);
+	if (match && match[index]) {
+		return match[index];
+	}
 	return '.';
 }
-
-
-
-
-
-
