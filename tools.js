@@ -20,6 +20,7 @@ module.exports = {
 	output: require(PATH_SRC + '/11 output 多路径输出.js'),
 	template: require(PATH_SRC + '/12 template 模版.js'),
 	combine: require(PATH_SRC + '/13 combine 合并.js'),
+	replaceholder: require(PATH_SRC + '/14 replaceholder 占位符替换.js'),
 };
 
 

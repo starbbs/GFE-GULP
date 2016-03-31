@@ -5,7 +5,8 @@
   "keywords": [
     "果仁宝",
     "张树垚",
-    "ccforeverd"
+    "ccforeverd",
+    "gulp"
   ],
   "homepage": "",
   "bugs": "",
@@ -14,7 +15,7 @@
     "browserify": "^10.2.6",
     "del": "^1.2.0",
     "envify": "^3.4.0",
-    "gulp": "^3.9.0",
+    "gulp": "^3.9.1",
     "gulp-autoprefixer": "^2.3.1",
     "gulp-cache": "^0.2.10",
     "gulp-concat": "^2.6.0",
@@ -36,6 +37,9 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "scripts": {
-    "build": "browserify --debug --transform reactify jsx/main.jsx > js/main.js"
+    "test": "npm run build",
+    "gulp": "gulp --use-strict $(node --v8-options | grep harm | awk '{print $1}' | xargs) #ES6",
+    "build": "gulp h5-build --use-strict $(node --v8-options | grep harm | awk '{print $1}' | xargs) #ES6",
+    "public": "gulp h5-public --use-strict $(node --v8-options | grep harm | awk '{print $1}' | xargs) #ES6"
   }
 }
