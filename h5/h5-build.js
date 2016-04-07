@@ -69,7 +69,7 @@ gulp.task('h5-img-move', function() {
 			rename: function(url) {
 				if (url.dirname !== '.') {
 					var reg = new RegExp(path.sep + 'images', 'g');
-					url.basename = url.dirname.replace(reg, '') + url.basename.replace(/^_+/, '-');
+					url.basename = url.dirname.replace(reg, '').replace(path.sep, '') + url.basename.replace(/^_+/, '-');
 				}
 			}
 		};
