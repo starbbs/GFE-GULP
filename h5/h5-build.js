@@ -67,8 +67,10 @@ gulp.task('h5-img-move', function() {
 		var opts = {
 			type: 'image',
 			rename: function(url) {
-				url.dirname = url.dirname.replace(/\\/g, '/');
-				url.basename = url.dirname.replace(/(\/?images\/?)|(^\.)/, '') + url.basename.replace(/^_+/, '-');
+				if (url.dirname !== '.') {
+					var reg = new RegExp(path.sep + 'images', 'g');
+					url.basename = url.dirname.replace(reg, '') + url.basename.replace(/^_+/, '-');
+				}
 			}
 		};
 		useReg && (opts.fileReg = /^_/);
