@@ -33,44 +33,40 @@ module.exports = {
 	server: '../../GOPServer/WebContent',
 	common: '../source',
 	rjs: {
-		// 公用部分
-		'api': PATH_LIBRARY + '/api',
-		'authorization': PATH_LIBRARY + '/authorization',
-		'bind': PATH_LIBRARY + '/bind',
-		'check': PATH_LIBRARY + '/check',
-		'cookie': PATH_LIBRARY + '/cookie',
-		'dom': PATH_LIBRARY + '/dom',
-		'filters': PATH_LIBRARY + '/filters',
-		'get': PATH_LIBRARY + '/get',
-		'url': PATH_LIBRARY + '/url',
+		// 公用部分 tools
+		'api': PATH_LIBRARY + '/tools/api',
+		'bind': PATH_LIBRARY + '/tools/bind',
+		'cookie': PATH_LIBRARY + '/tools/cookie',
+		'filters': PATH_LIBRARY + '/tools/filters',
+		'get': PATH_LIBRARY + '/tools/get',
+		'mydate': PATH_LIBRARY + '/tools/mydate',
+		'router': PATH_LIBRARY + '/tools/router',
+		'url': PATH_LIBRARY + '/tools/url',
+		// 公用部分 check
+		'check': PATH_LIBRARY + '/check/check',
+		'check-common': PATH_LIBRARY + '/check/common',
+		'check-message': PATH_LIBRARY + '/check/message',
+		'check-phone': PATH_LIBRARY + '/check/phone',
+		'check-ident': PATH_LIBRARY + '/check/ident',
+		'check-password': PATH_LIBRARY + '/check/password',
+		'check-safe': PATH_LIBRARY + '/check/safe',
+		// 公用部分 src
 		'hchart': PATH_LIBRARY + '/src/highcharts',
-		'm': PATH_LIBRARY + '/api',
 		'mmRouter': PATH_LIBRARY + '/src/mmRouter',
 		'mmHistory': PATH_LIBRARY + '/src/mmHistory',
-		'mydate': PATH_LIBRARY + '/mydate',
 		'iScroll4': PATH_LIBRARY + '/src/iscroll4',
-		'module': PATH_LIBRARY + '/api',
-		'router': PATH_LIBRARY + '/router',
+		'touch-slide': PATH_LIBRARY + '/src/TouchSlide.1.1.source',
+		// 公用部分 其他
 		'hashMap': PATH_LIBRARY + '/hashMap',
 		'iscrollLoading': PATH_LIBRARY + '/iscrollLoading',
 		'highChartsSet': PATH_LIBRARY + '/highChartsSet',
-		'touch-slide': PATH_LIBRARY + '/src/TouchSlide.1.1.source',
-		// PC端部分
-		'bank': PATH_COMPONENTS + '/bank/bank',
-		'bank-icon': PATH_COMPONENTS + '/bank-icon/bank-icon',
-		'bank-list': PATH_COMPONENTS + '/bank/bank-list',
-		'dialog': PATH_COMPONENTS + '/dialog/dialog',
-		'dialog-bank': PATH_COMPONENTS + '/dialog-bank/dialog-bank',
-		'dialog-bankadd': PATH_COMPONENTS + '/dialog-bankadd/dialog-bankadd',
-		'dialog-login': PATH_COMPONENTS + '/dialog-login/dialog-login',
-		'payment': PATH_COMPONENTS + '/payment/payment',
-		'tabs': PATH_COMPONENTS + '/tabs/tabs',
-		'top': PATH_COMPONENTS + '/top/top',
-		// H5微信端部分
+		// H5微信端部分 library
 		'h5-api': H5_SOURCE + '/library/h5-api',
 		'h5-check': H5_SOURCE + '/library/check',
 		'h5-price': H5_SOURCE + '/library/price',
 		'h5-weixin': H5_SOURCE + '/library/weixin',
+		'h5-authorization': H5_SOURCE + '/library/authorization',
+		// H5微信端部分 components
 		'h5-alert': H5_COMPONENTS + '/alert/alert',
 		'h5-button': H5_COMPONENTS + '/button/button',
 		'h5-bank': H5_COMPONENTS + '/bank/bank',
@@ -80,9 +76,8 @@ module.exports = {
 		'h5-wait': H5_COMPONENTS + '/wait/wait',
 		'h5-component-bill': H5_COMPONENTS + '/bill/bill',
 		'h5-keyboard': H5_COMPONENTS + '/keyboard/keyboard',
+		// H5微信端部分 dialog
 		'h5-dialog': H5_DIALOGS + '/dialog',
-
-		//添加对话
 		'h5-dialog-alert': H5_DIALOGS + '/alert/alert',
 		'h5-dialog-success': H5_DIALOGS + '/success/success',
 		'h5-dialog-info': H5_DIALOGS + '/info/info',
@@ -90,8 +85,7 @@ module.exports = {
 		'h5-dialog-bankcard': H5_DIALOGS + '/bankcard/bankcard',
 		'h5-dialog-paypass': H5_DIALOGS + '/paypass/paypass',
 		'h5-dialog-more': H5_DIALOGS + '/more/more',
-
-
+		// H5微信端部分 view
 		'h5-bankcard-append': H5_VIEWS + '/bankcard/bankcard-append',
 		'h5-bankcard-ident': H5_VIEWS + '/bankcard/bankcard-ident',
 		'h5-view': H5_VIEWS + '/view',
