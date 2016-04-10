@@ -21,6 +21,7 @@ module.exports = {
 	template: require(PATH_SRC + '/12 template 模版.js'),
 	combine: require(PATH_SRC + '/13 combine 合并.js'),
 	replaceholder: require(PATH_SRC + '/14 replaceholder 占位符替换.js'),
+	refresh: require(PATH_SRC + '/15 refresh 页面自动刷新.js'),
 };
 
 
