@@ -78,9 +78,11 @@ gulp.task('h5-img-move', function() {
 			.pipe(notify('h5-img-move', url))
 	};
 	todo(path.join(paths.pages, '/**/**'), true);
+	todo(path.join(paths.views, '/**/**'), true);
 	todo(path.join(paths.source, '/images/**/**'));
 	gulp.watch([
-		path.join(paths.pages, '/**/**'), 
+		path.join(paths.pages, '/**/**'),
+		path.join(paths.views, '/**/**'),
 		path.join(paths.source, '/images/**/**')
 	], function(event) {
 		var path = tools.filePath(event.path);
