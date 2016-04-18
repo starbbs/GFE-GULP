@@ -3,57 +3,97 @@
 // GULP --- Project类
 
 
-var gulp = require('gulp');
+
+let gulp = require('gulp');
 
 
-var Project = function(name, options) {
+// new Project('h5', {
+// 	include: ['path1', 'path2', {}]
+// });
+
+let taskList = [];
+let taskExist = function(name, suffix = 0) {
+	if (taskList.indexOf(name) > -1) {
+		let tail = name.substr(name.lastIndexOf('-') + 1);
+		let num = parseInt(tail);
+		if (isNaN(num)) {
+			taskList.push(name + '-1');
+			return name + '-1';
+		} else {
+			num++; // 加在后面
+			return taskExist(name, num);
+			// 加在中间空挡
+			// suffix++;
+			// return taskExist(name, suffix);
+		}
+	} else {
+		taskList.push(name);
+		return name;
+	}
+};
+
+taskExist('a');
+taskExist('a');
+taskExist('a');
+
+console.log(taskList)
+
+
+let taskMaker = function(name, need = [], todo) {
+	gulp.task(taskExist(name), need, function() {});
+};
+
+let Project = function(name = '', options = {}) {
 	this.name = name;
 	this.options = options;
-	for (var i in options) {
-		if (i in Project.prototype) {
-			Project.prototype[i].apply(this, options[i]);
-		} else {
-			console.log('error: ' + i + '并不存在于Project原型中');
-		}
+	if (Object.keys(options).length) {
+		this.init(options);
 	}
 };
 Project.prototype = {
-	init: function() { // 初始化
-
+	init: function(options = {}) { // 初始化
+		this.options = options;
+		Object.keys(options).forEach(function(key) {
+			if (key in this) {
+				this[key].apply(this, options[key]);
+			} else {
+				console.log('Error: (Project) ' + i + '并不存在于Project原型中');
+			}
+		}.bind(this));
 	},
 	// build
-	scss: function() { // sass编译
+	sass: function(input, output, options) { // sass编译
 
 	},
-	'css-move': function() { // css转移
+	'css-move': function(input, output, options) { // css转移
 
 	},
-	'img-move': function() { // 图片转移
+	'img-move': function(input, output, options) { // 图片转移
 
 	},
-	'js-move': function() { // js转移
+	'js-move': function(input, output, options) { // js转移
 
 	},
-	include: function() { // html生成
+	include: function(input, output, options) { // html生成
 
 	},
 	// public
-	rjs: function() { // requirejs合并
+	rjs: function(input, output, options) { // requirejs合并
 
 	},
-	js: function() { // js处理(压缩)
+	js: function(input, output, options) { // js处理(压缩)
 
 	},
-	'css-sprite': function() { // 雪碧图合并
+	'css-sprite': function(input, output, options) { // 雪碧图合并
 
 	},
-	css: function() { // css处理(压缩)
+	css: function(input, output, options) { // css处理(压缩)
 
 	},
-	html: function() { // html处理(压缩)
+	html: function(input, output, options) { // html处理(压缩)
 
 	},
-	img: function() { // 图片处理(压缩)
+	img: function(input, output, options) { // 图片处理(压缩)
 
 	},
 };

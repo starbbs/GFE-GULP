@@ -8,8 +8,10 @@ require('./h5/h5-build');
 require('./h5/h5-public');
 gulp.task('h5', ['h5-build']);
 
+var Project = require('./project');
+
 // 任务
-gulp.task('default', ['h5']);
+gulp.task('default', function() {});
 
 
 
