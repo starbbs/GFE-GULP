@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>测试</title>
+</head>
+<body>
+	<script>
+		
+	var list = [];
+	var worker = function(name) {
+		if (list.indexOf(name) > -1) {
+			var match = name.match(/(.+)\-(\d+)/);
+			var num = 1;
+			if (match) {
+				name = match[1];
+				num = parseInt(match[2]) + 1;
+			}
+			return worker(name + '-' + num);
+		} else {
+			list.push(name);
+			return name;
+		}
+	};
+
+	console.log(worker('a')); // a
+	console.log(worker('a')); // a-1
+	console.log(worker('a')); // a-2
+
+	console.log(list); // ['a', 'a-1', 'a-2']
+
+	</script>
+</body>
+</html>

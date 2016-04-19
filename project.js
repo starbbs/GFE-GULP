@@ -6,37 +6,14 @@
 
 let gulp = require('gulp');
 
+let task = require('./project_modules/task');
+
 
 // new Project('h5', {
 // 	include: ['path1', 'path2', {}]
 // });
 
-let taskList = [];
-let taskExist = function(name, suffix = 0) {
-	if (taskList.indexOf(name) > -1) {
-		let tail = name.substr(name.lastIndexOf('-') + 1);
-		let num = parseInt(tail);
-		if (isNaN(num)) {
-			taskList.push(name + '-1');
-			return name + '-1';
-		} else {
-			num++; // 加在后面
-			return taskExist(name, num);
-			// 加在中间空挡
-			// suffix++;
-			// return taskExist(name, suffix);
-		}
-	} else {
-		taskList.push(name);
-		return name;
-	}
-};
 
-taskExist('a');
-taskExist('a');
-taskExist('a');
-
-console.log(taskList)
 
 
 let taskMaker = function(name, need = [], todo) {
