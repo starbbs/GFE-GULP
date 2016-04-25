@@ -10,6 +10,11 @@ gulp.task('h5', ['h5-build']);
 
 var Project = require('./project');
 
+var myProject = new Project('test');
+console.log(myProject);
+
+
+
 // 任务
 gulp.task('default', function() {});
 
