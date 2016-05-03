@@ -1,10 +1,11 @@
-
 // 张树垚 2015-12-10 14:59:58 创建
 // gulp H5微信端 生成到build文件夹
 
 
 var gulp = require('gulp');
 var path = require('path');
+
+var browserSync = require('browser-sync').create();
 
 var tools = require('../tools');
 var paths = require('./h5-paths');
@@ -20,8 +21,13 @@ var notify = function(task, path) { // 提示
 gulp.task('h5-include', function() {
 	var page = paths.pages + '/**/*.html';
 	var todo = function(path) {
-		return tools.fileInclude(path || page, paths.build, { strict: true })
-				.pipe(notify('h5-include', path));
+		return tools.fileInclude(path || page, paths.build, {
+				strict: true
+			})
+			.pipe(browserSync.reload({
+				stream: true
+			}))
+			.pipe(notify('h5-include', path));
 	};
 	gulp.watch(page, function(event) {
 		var path = tools.filePath(event.path);
@@ -31,9 +37,10 @@ gulp.task('h5-include', function() {
 		path.join(paths.source, '/include/*.html'),
 		path.join(paths.views, '/**/*.html'),
 		path.join(paths.dialogs, '/**/*.html'),
-		path.join(paths.components, '/**/*.html')], function(event) {
-			return todo();
-		});
+		path.join(paths.components, '/**/*.html')
+	], function(event) {
+		return todo();
+	});
 	return todo();
 });
 
@@ -43,7 +50,10 @@ gulp.task('h5-sass', function() {
 	var page = path.join(paths.pages, '/**/*.scss');
 	var todo = function(url) {
 		return tools.sass(url || page, path.join(paths.build, '/css'))
-				.pipe(notify('h5-sass', url));
+			.pipe(browserSync.reload({
+				stream: true
+			}))
+			.pipe(notify('h5-sass', url));
 	};
 	gulp.watch(page, function(event) {
 		return todo(event.path);
@@ -75,6 +85,9 @@ gulp.task('h5-img-move', function() {
 		};
 		useReg && (opts.fileReg = /^_/);
 		tools.fileMove(url, path.join(paths.build, '/images'), opts)
+			.pipe(browserSync.reload({
+				stream: true
+			}))
 			.pipe(notify('h5-img-move', url))
 	};
 	todo(path.join(paths.pages, '/**/**'), true);
@@ -100,6 +113,9 @@ gulp.task('h5-js-move', function() {
 		return gulp.src(url)
 			.pipe(tools.removeDirname())
 			.pipe(gulp.dest(path.join(paths.build, '/js')))
+			.pipe(browserSync.reload({
+				stream: true
+			}))
 			.pipe(notify('h5-js-move', url))
 	};
 	gulp.watch(js, function(event) {
@@ -147,9 +163,22 @@ gulp.task('h5-template', function() {
 });
 
 
-gulp.task('h5-build', ['h5-include', 'h5-sass', 'h5-img-move', 'h5-js-move', 'h5-font-build']);
+// 自动刷新
+gulp.task('reload', function() {
+	return browserSync.init({
+		ui: {
+			port: 8080,
+			weinre: {
+				port: 9090
+			}
+		},
+		server: {
+			baseDir: '../'
+		}
+	});
+});
 
 
-
-
-
+gulp.task('h5-build', ['h5-include', 'h5-sass', 'h5-img-move', 'h5-js-move', 'h5-font-build'], function() {
+	gulp.start('reload');
+});
