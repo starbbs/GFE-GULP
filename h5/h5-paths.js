@@ -2,10 +2,10 @@
 // gulp h5端 路径(相对于gulpfile.js)
 
 
-var PATH_H5 = '../h5';
+var PATH_H5 = '../h5'; // guorenbao_1.2.0/h5/
 
 // 用于rjs的相对路径
-var PATH_BATH = '../../..';
+var PATH_BATH = '../../..'; //guorenbao_1.2.0/
 
 var PATH_LIBRARY = PATH_BATH + '/source/library';
 var PATH_COMPONENTS = PATH_BATH + '/factory/components';
