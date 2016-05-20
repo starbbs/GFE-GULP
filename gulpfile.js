@@ -16,7 +16,10 @@ console.log(myProject);
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> hotfix/chulibug
 // 任务
 gulp.task('default', function() {});
 
