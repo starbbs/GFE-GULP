@@ -24,7 +24,7 @@ gulp.task('h5-include', function() {
 		return tools.fileInclude(path || page, paths.build, {
 				strict: true
 			})
-			.pipe(browserSync.reload({
+			.pipe(browserSync.reload({ 
 				stream: true
 			}))
 			.pipe(notify('h5-include', path));
