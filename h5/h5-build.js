@@ -22,7 +22,7 @@ gulp.task('h5-include', function() {
 	var page = paths.pages + '/**/*.html';
 	var todo = function(path) {
 		return tools.fileInclude(path || page, paths.build, {
-				strict: true
+				strict: false
 			})
 			.pipe(browserSync.reload({
 				stream: true
