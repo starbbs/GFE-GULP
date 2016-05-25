@@ -2,7 +2,7 @@
 // gulp -- 我是工人阶级
 var gulp = require("gulp");
 var tools = require('./tools');
-
+console.log(111);
 // H5微信端
 require('./h5/h5-build');
 require('./h5/h5-public');
