@@ -60,5 +60,5 @@ gulp.task('h5-font', function() {
 });
 
 
-gulp.task('h5-public', ['h5-rjs', 'h5-html', 'h5-img', 'h5-sprite', 'h5-font']);
+gulp.task('h5-online', ['h5-rjs', 'h5-html', 'h5-img', 'h5-sprite', 'h5-font']);
 
