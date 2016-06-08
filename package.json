@@ -44,6 +44,7 @@
     "project": "node project.js --use-strict $(node --v8-options | grep harm | awk '{print $1}' | xargs) #ES6",
     "build": "gulp h5-build --use-strict $(node --v8-options | grep harm | awk '{print $1}' | xargs) #ES6",
     "public": "gulp h5-public --use-strict $(node --v8-options | grep harm | awk '{print $1}' | xargs) #ES6",
+    "online": "gulp h5-online --use-strict $(node --v8-options | grep harm | awk '{print $1}' | xargs) #ES6",
     "h5-build": "gulp h5-build --es_staging --harmony --harmony_shipping --harmony_modules --harmony_regexps --harmony_proxies --harmony_sloppy_function --harmony_sloppy_let --harmony_unicode_regexps --harmony_reflect --harmony_destructuring --harmony_default_parameters --harmony_sharedarraybuffer --harmony_atomics --harmony_simd --harmony_array_includes --harmony_tostring --harmony_concat_spreadable --harmony_rest_parameters --harmony_sloppy --harmony_arrow_functions --harmony_new_target --harmony_object_observe --harmony_spreadcalls --harmony_spread_arrays --harmony_object"
   }
 }

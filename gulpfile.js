@@ -6,6 +6,7 @@ var tools = require('./tools');
 // H5微信端
 require('./h5/h5-build');
 require('./h5/h5-public');
+require('./h5/h5-online');
 gulp.task('h5', ['h5-build']);
 
 var Project = require('./project');

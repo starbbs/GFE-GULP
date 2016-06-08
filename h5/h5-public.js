@@ -10,22 +10,25 @@ var tools = require('../tools');
 var paths = require('./h5-paths');
 
 var uglify = require('gulp-uglify');
+var replace = require('gulp-replace');
 
 var version=(new Date()).valueOf();//版本号
 
-gulp.task('h5-js', function() {
+gulp.task('h5-pjs', function() {
 	return gulp.src(path.join(paths.build, '/js/*.js'))
 		.pipe(uglify())
 		.pipe(gulp.dest(paths.public + '/js'))
 });
-gulp.task('h5-rjs', ['h5-js'], function() {
+
+gulp.task('h5-prjs', ['h5-pjs'], function() {
 	return tools.rjs(paths.build + '/*.html', paths.public + '/js', {
 		rjsPaths: paths.rjs,
-		uglify: true
+		uglify: true,
+		isOnline:false
 	});
 });
 
-gulp.task('h5-html', function() {
+gulp.task('h5-phtml', function() {
 	return tools.html(paths.build + '/*.html', paths.public, {
 		remove: '<script src="./js/config.js"></script>',
 		oldChar: '.js',
@@ -35,7 +38,7 @@ gulp.task('h5-html', function() {
 	});
 });
 
-gulp.task('h5-img', function() {
+gulp.task('h5-pimg', function() {
 	return tools.fileMove(paths.build + '/images/**/**', paths.public + '/images', {
 		type: 'image',
 		imagemin: true,
@@ -43,18 +46,18 @@ gulp.task('h5-img', function() {
 	});
 });
 
-gulp.task('h5-sprite', function() {
+gulp.task('h5-psprite', function() {
 	return tools.cssSprite(path.join(paths.build, '/css/*.css'), {
 		css: path.join(paths.public + '/css'),
 		img: path.join(paths.public + '/images')
 	})
 });
 
-gulp.task('h5-font', function() {
+gulp.task('h5-pfont', function() {
 	return gulp.src(paths.build + '/font/**')
 		.pipe(gulp.dest(paths.public + '/font'));
 });
 
 
-gulp.task('h5-public', ['h5-rjs', 'h5-html', 'h5-img', 'h5-sprite', 'h5-font']);
+gulp.task('h5-public', ['h5-prjs', 'h5-phtml', 'h5-pimg', 'h5-psprite', 'h5-pfont']);
 

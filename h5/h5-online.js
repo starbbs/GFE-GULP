@@ -10,27 +10,33 @@ var tools = require('../tools');
 var paths = require('./h5-paths');
 
 var uglify = require('gulp-uglify');
-
 var replace = require('gulp-replace');
+
+var version=(new Date()).valueOf();//版本号
 
 gulp.task('h5-js', function() {
 	return gulp.src(path.join(paths.build, '/js/*.js'))
 		.pipe(uglify())
-		.pipe(replace('//goopal.xiaojian.me','//endpoint.goopal.com.cn'))
-		.pipe(replace('//www.xiaojian.me/wx/','//www.goopal.com.cn/wx/'))
-		.pipe(replace('wxe91980c4944999fe','wx55923db8dfb94e44'))
-		.pipe(gulp.dest(paths.public + '/js'))
+		.pipe(gulp.dest(paths.online + '/js'))
 });
-
 gulp.task('h5-rjs', ['h5-js'], function() {
-	return tools.rjs(paths.build + '/*.html', paths.public + '/js', {
+	return tools.rjs(paths.build + '/*.html', paths.online + '/js', {
 		rjsPaths: paths.rjs,
-		uglify: true
+		uglify: true,
+		isOnline:true,
+		oldChar: '//172.16.33.3:18080',
+		newChar: '//endpoint.goopal.com.cn',
+		oldChar1: '//www.xiaojian.me/wx/',
+		newChar1: '//www.goopal.com.cn/wx/',
+		oldChar2: 'wxe91980c4944999fe',
+		newChar2: 'wx55923db8dfb94e44',
+		oldChar3: '172.16.33.10:8089',
+		newChar3: 'track.goopal.com.cn'
 	});
 });
 
 gulp.task('h5-html', function() {
-	return tools.html(paths.build + '/*.html', paths.public, {
+	return tools.html(paths.build + '/*.html', paths.online, {
 		remove: '<script src="./js/config.js"></script>',
 		oldChar: '.js',
 		newChar: '.js?version='+version,
@@ -40,7 +46,7 @@ gulp.task('h5-html', function() {
 });
 
 gulp.task('h5-img', function() {
-	return tools.fileMove(paths.build + '/images/**/**', paths.public + '/images', {
+	return tools.fileMove(paths.build + '/images/**/**', paths.online + '/images', {
 		type: 'image',
 		imagemin: true,
 		removeDirname: false
@@ -49,14 +55,14 @@ gulp.task('h5-img', function() {
 
 gulp.task('h5-sprite', function() {
 	return tools.cssSprite(path.join(paths.build, '/css/*.css'), {
-		css: path.join(paths.public + '/css'),
-		img: path.join(paths.public + '/images')
+		css: path.join(paths.online + '/css'),
+		img: path.join(paths.online + '/images')
 	})
 });
 
 gulp.task('h5-font', function() {
 	return gulp.src(paths.build + '/font/**')
-		.pipe(gulp.dest(paths.public + '/font'));
+		.pipe(gulp.dest(paths.online + '/font'));
 });
 
 

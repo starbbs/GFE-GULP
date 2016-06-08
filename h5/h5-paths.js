@@ -24,6 +24,7 @@ module.exports = {
 	factory: PATH_H5 + '/factory',
 	build: PATH_H5 + '/build',
 	public: PATH_H5 + '/public',
+	online: PATH_H5 + '/online',
 	pages: PATH_H5 + '/factory/pages',
 	components: PATH_H5 + '/factory/components',
 	views: PATH_H5 + '/factory/views',
