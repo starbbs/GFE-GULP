@@ -31,7 +31,10 @@ gulp.task('h5-rjs', ['h5-js'], function() {
 		oldChar2: 'wxe91980c4944999fe',
 		newChar2: 'wx55923db8dfb94e44',
 		oldChar3: '172.16.33.10:8089',
-		newChar3: 'track.goopal.com.cn'
+		newChar3: 'track.goopal.com.cn',
+		oldChar4:'exchange.xiaojian.me',
+		newChar4: 'www.goopal.net.cn'
+
 	});
 });
 
