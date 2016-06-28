@@ -37,6 +37,7 @@ module.exports = function(input, output, options) {
 		options.removeDirname = true;
 	}
 	return gulp.src(input, function(somethingNULL, filePaths) {
+		// console.log(filePaths);
 		if (!filePaths.length) {
 			return;
 		}
@@ -58,26 +59,21 @@ module.exports = function(input, output, options) {
 				return path.type !== 'dir';
 			}
 		});
-		// 处理
-		let stream = gulp.src(files, {
-			base: options.baseUrl || baseUrl
-		}).pipe(rename(function(path) {
-			options.rename && options.rename(path);
-			options.removeDirname && (path.dirname = '');
-		}));
-		options.minifyHtml && stream.pipe(minifyHtml({ // html压缩无效果, 原因未知
-			empty: false, // 保留空属性
-			cdata: false, // 保留scripts标签的CDATA
-			comments: false, // 保留注释
-			conditionals: true, // 保留条件语句
-			spare: true, // 保留多余属性
-			quotes: true, // 保留所有引用
-			loose: true // 保留1个空白符
-		}));
-		options.imagemin && stream.pipe(imagemin());
-		options.uglify && stream.pipe(uglify());
-		// 输出
-		stream.pipe(gulp.dest(output));
-		options.server && stream.pipe(gulp.dest(options.server));
+		if(options.imagemin){
+			let stream = gulp.src(files, {
+				base: options.baseUrl || baseUrl
+			}).pipe(rename(function(path) {
+				options.rename && options.rename(path);
+				options.removeDirname && (path.dirname = '');
+			})).pipe(imagemin()).pipe(gulp.dest(output));
+		}else{
+			let stream = gulp.src(files, {
+				base: options.baseUrl || baseUrl
+			}).pipe(rename(function(path) {
+				options.rename && options.rename(path);
+				options.removeDirname && (path.dirname = '');
+			})).pipe(gulp.dest(output));
+		}
+
 	});
 };

@@ -54,7 +54,7 @@ gulp.task('h5-html', function() {
 });
 
 gulp.task('h5-img', function() {
-	return tools.fileMove(paths.build + '/images/**/**', paths.online + '/images', {
+	return tools.fileMove(paths.build + '/images/**', paths.online + '/images', {
 		type: 'image',
 		imagemin: true,
 		removeDirname: false
