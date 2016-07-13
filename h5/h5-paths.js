@@ -43,6 +43,7 @@ module.exports = {
 		'mydate':					PATH_LIBRARY + '/tools/mydate',
 		'router':					PATH_LIBRARY + '/tools/router',
 		'url':						PATH_LIBRARY + '/tools/url',
+		'mathtool':					PATH_LIBRARY + '/tools/mathtool',
 		// 公用部分 check
 		'check':					PATH_LIBRARY + '/check/check',
 		'check-common':				PATH_LIBRARY + '/check/common',
@@ -110,6 +111,7 @@ module.exports = {
 		'h5-view-password':			H5_VIEWS + '/password/password',
 		'h5-view-nickname':			H5_VIEWS + '/nickname/nickname',
 		'h5-paypass-view':          H5_VIEWS + '/paypass/paypass-view',
-		'h5-view-coupon':           H5_VIEWS + '/coupon/coupon'
-	}
+		'h5-view-coupon':           H5_VIEWS + '/coupon/coupon',
+
+	},
 };
