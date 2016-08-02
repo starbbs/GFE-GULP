@@ -25,7 +25,7 @@ gulp.task('h5-rjs', ['h5-js'], function() {
 		uglify: true,
 		isOnline:true,
 		//替换测试环境的后台接口为正式环境的域名
-		oldChar: 'goopal.xiaojian.me',
+		oldChar: 'test123.xiaojian.me',
 		newChar: 'endpoint.goopal.com.cn',
 		//替换测试环境入口域名为正式环境的域名
 		oldChar1: 'www.xiaojian.me',
